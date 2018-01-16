@@ -6,6 +6,9 @@ public class PumpManager
   
   public void sendPumpCommand(int pumpID, int ml)
   {
-    //the base code you already have will end up here
+    println("Sending pump command for #"+pumpID+" for "+ml+" ml");
+    myPort.write((byte)pumpID);
+    myPort.write((byte)ml);
+    myPort.write(255); //end message
   }
 }
