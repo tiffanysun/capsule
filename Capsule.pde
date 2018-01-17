@@ -6,10 +6,10 @@ PumpManager pumpManager;
 void setup()
 {
   //setup the screen here
-  size(1280,800);
+  size(800,600);
   
   screenManager = new CapsuleScreenManager();
-  pumpManager = new PumpManager();
+  pumpManager = new PumpManager(this);
 }
 
 
@@ -17,10 +17,17 @@ void draw()
 {
   background(255);
   screenManager.draw();
+  pumpManager.update();
+  
+  if(pumpManager.isConnected) fill(50,240,0);
+  else fill(240,50,0);
+  
+  ellipse(width-20,20,10,10);
 }
 
 void keyPressed(KeyEvent e)
 {
+  println(e.getKeyCode());
   
   switch(e.getKeyCode())
   {
