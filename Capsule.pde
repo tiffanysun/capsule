@@ -1,6 +1,7 @@
 //We will have our "global" variables here, mainly all the managers
 CapsuleScreenManager screenManager;
 PumpManager pumpManager;
+KinectManager kinectManager;
 
 
 void setup()
@@ -10,20 +11,36 @@ void setup()
   
   screenManager = new CapsuleScreenManager();
   pumpManager = new PumpManager(this);
+  kinectManager = new KinectManager();
 }
 
 
 void draw()
 {
   background(255);
-  screenManager.draw();
   pumpManager.update();
   
-  if(pumpManager.isConnected) fill(50,240,0);
-  else fill(240,50,0);
-  
-  ellipse(width-20,20,10,10);
+  screenManager.draw();
+  kinectManager.draw();
+  pumpManager.draw();
 }
+
+
+void mousePressed()
+{
+  kinectManager.mousePressed();
+}
+
+void mouseReleased()
+{
+  kinectManager.mouseReleased();
+}
+
+void mouseDragged()
+{
+  kinectManager.mouseDragged();
+}
+
 
 void keyPressed(KeyEvent e)
 {
@@ -45,4 +62,6 @@ void keyPressed(KeyEvent e)
     case 40: //Arrow down
       break; 
    }
+   
+   kinectManager.keyPressed(e);
 }

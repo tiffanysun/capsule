@@ -7,7 +7,7 @@ public class CapsuleScreenManager
   {
     screens = new CapsuleScreen[] //Initialization of all the screens
     {
-      new StartScreen("start"), 
+        new StartScreen("start"), 
         new InstructionScreen("instructions"), 
         new QuestionScreen("question1", "Person X, ask person Y gnagnagna"), 
         new QuestionScreen("question2", "Person Y, ask person X gnignigni"), 
@@ -24,6 +24,24 @@ public class CapsuleScreenManager
   public void draw()
   {
     if(currentScreen != null) currentScreen.draw();
+    
+    int index= getScreenIndex(currentScreen);
+    switch(index)
+    {
+       case 0: //start
+       {
+         StartScreen s = (StartScreen)currentScreen;
+         if(s.personsAreReady) nextScreen();
+       }
+       break;
+       
+       case 1: //instructions
+       {
+         InstructionScreen s = (InstructionScreen)currentScreen;
+         if(s.instructionsAreUnderstood) nextScreen();
+       }
+       break;
+    }
   }
   
   //This is the screen switching function that will manage the changing of screens

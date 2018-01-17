@@ -4,6 +4,7 @@ public class PumpManager
 {
   Serial myPort;
   boolean isConnected;
+  
   public PumpManager(PApplet parent)
   {
     println("Serial ports :");
@@ -23,6 +24,14 @@ public class PumpManager
   public void update()
   {
     if(isConnected) while (myPort.available() > 0) print((char)myPort.read());
+  }
+  
+  public void draw()
+  {
+    if(isConnected) fill(50,240,0);
+    else fill(240,50,0);
+    
+    ellipse(width-20,20,10,10);
   }
 
   public void sendPumpCommand(int pumpID, int ml)
