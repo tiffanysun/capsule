@@ -2,15 +2,18 @@ public class InstructionScreen extends CapsuleScreen
 {
   SelectionZone zone;
   boolean instructionsAreUnderstood;
-  
+  int numHandsOver;
   float timeAtValidation; //time when the 2 hands were fist inside
-  float validationTime = 2; //it take 2 seconds to validates
+  float validationTime; //it take 2 seconds to validates
   
   public InstructionScreen(String id)
   {
     super(id);
     zone = new SelectionZone(new PVector(width/2,height-100), 80);
+    instructionsAreUnderstood = false;
+    numHandsOver = 0;
     timeAtValidation = 0;
+    validationTime = 2;
   }
   
   public void draw()
@@ -24,8 +27,6 @@ public class InstructionScreen extends CapsuleScreen
     textAlign(CENTER);
     text("Please move your hands on to the circle", 0, height/2-20, width, 40);
     
-    
-    
     //check hand pos for zone
     int numHandsOver = 0;
     if(zone.isPointOver(kinectManager.person1Hand)) numHandsOver++;
@@ -36,6 +37,7 @@ public class InstructionScreen extends CapsuleScreen
     else if(numHandsOver == 2) targetColor = color(80,250,0);
     
     zone.zoneColor = targetColor;
+    
     zone.draw();
     
     if(numHandsOver == 2) 
@@ -47,7 +49,7 @@ public class InstructionScreen extends CapsuleScreen
          float validationProgression = map(currentTime-timeAtValidation,0,validationTime,0,1);
          fill(100);
          rect(zone.position.x+zone.radius+10,zone.position.y-zone.radius/2,10,zone.radius);
-          fill(255,255,0);
+         fill(255,255,0);
          rect(zone.position.x+zone.radius+10,zone.position.y-zone.radius/2,10,zone.radius*validationProgression);
          
          if(currentTime > timeAtValidation + validationTime) instructionsAreUnderstood = true;
@@ -57,8 +59,8 @@ public class InstructionScreen extends CapsuleScreen
       timeAtValidation = 0;
     }
     
-    
     popStyle();
+    
   }
   
   public void show()
