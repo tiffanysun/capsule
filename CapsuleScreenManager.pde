@@ -12,8 +12,8 @@ public class CapsuleScreenManager
         new QuestionScreen("question1", "Person X, ask person Y gnagnagna"), 
         new QuestionScreen("question2", "Person Y, ask person X gnignigni"), 
         new QuestionScreen("question3", "Person X, ask person Y gnognogno"), 
-        new QuestionScreen("question5", "Person Y, ask person X gneugneugneu"), 
-        new QuestionScreen("question4", "Person X, ask person Y what's the capital of Albany"), 
+        new QuestionScreen("question4", "Person Y, ask person X gneugneugneu"), 
+        new QuestionScreen("question5", "Person X, ask person Y what's the capital of Albany"), 
         new StickyHandsScreen("sticky_hands"), 
         new RecapScreen("Recap")
     };
@@ -74,6 +74,13 @@ public class CapsuleScreenManager
        {
          QuestionScreen s = (QuestionScreen)currentScreen;
          if(s.sevenZone.colorIsSelected) nextScreen();
+       }
+       break;
+       
+       case 7: //StickyHands
+       {
+         StickyHandsScreen s = (StickyHandsScreen)currentScreen;
+         if(s.highFive) nextScreen();
        }
        break;
        
