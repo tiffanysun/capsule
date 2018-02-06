@@ -24,7 +24,8 @@ public class ZoneRecap extends Action
     pushStyle();
 
     //check hand pos for zone
-    image(circle, origin.x, origin.y, radius*2, radius*2);
+    imageMode(CENTER);
+    image(circle, origin.x, origin.y, radius*2+5, radius*2+5);
     fill(zoneColor);
     stroke(color(200));
     strokeWeight(5);
