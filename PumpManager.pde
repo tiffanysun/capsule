@@ -1,6 +1,6 @@
 import processing.serial.*;
 
-public class PumpManager
+public class PumpManager extends Action
 {
   Serial myPort;
   boolean isConnected;
@@ -26,12 +26,26 @@ public class PumpManager
     if(isConnected) while (myPort.available() > 0) print((char)myPort.read());
   }
   
+  
+  
   public void draw()
   {
     if(isConnected) fill(50,240,0);
     else fill(240,50,0);
     
     ellipse(width-20,20,10,10);
+  }
+  
+  public void getPerfumeRecipe(int[] liquidAmounts){
+    
+    
+    for(int i = 0;i<liquidAmounts.length;i++){
+      
+      sendPumpCommand(i,liquidAmounts[i]);
+      
+    }
+    
+    
   }
 
   public void sendPumpCommand(int pumpID, int ml)
