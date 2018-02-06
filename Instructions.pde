@@ -12,8 +12,8 @@ public class Instruction extends Screen
   public Instruction(String id, String next, KinectManager kinect)
   {
     super(id, next, kinect);
-    zone1 = new Zone(new PVector(width/3, height/2+20), 50);
-    zone2 = new Zone(new PVector(width/3*2, height/2+20), 50);
+    zone1 = new Zone(new PVector(width/2, height/3), 50);
+    zone2 = new Zone(new PVector(width/2, height/3*2), 50);
     
     instructionsAreUnderstood = false;
     timeAtValidation = 0;
@@ -35,8 +35,8 @@ public class Instruction extends Screen
     text("move the hands on the circles", 0, 30, width, 20);
     
     imageMode(CENTER);
-    image(circle, width/3, height/2+20, 110, 110);
-    image(circle, width/3*2, height/2+20, 110, 110);
+    image(circle, width/2, height/3, 110, 110);
+    image(circle, width/2, height/3*2, 110, 110);
 
     zone1.draw();
     zone2.draw();
